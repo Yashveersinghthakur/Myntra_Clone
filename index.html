@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Myntra — Fashion That Inspires</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- ════════════════════════════ NAVBAR ════════════════════════════ -->
+<header class="navbar" id="navbar">
+  <div class="nav-top-bar">
+    <span>Get 500 off on your first order! Use code: <strong>FIRST500</strong></span>
+    <span>Free delivery on orders above ₹499</span>
+    <span>Download the Myntra App</span>
+  </div>
+  <div class="nav-main">
+    <div class="nav-logo" onclick="showPage('home')">
+      <img src="https://constant.myntassets.com/web/assets/img/logo_myntra_v2.png" alt="Myntra" onerror="this.outerHTML='<span class=logo-text>myntra</span>'" />
+    </div>
+
+    <nav class="nav-categories">
+      <a href="#" class="nav-cat active" data-cat="men" onclick="filterByGender('Men');showPage('listing');return false;">Men</a>
+      <a href="#" class="nav-cat" data-cat="women" onclick="filterByGender('Women');showPage('listing');return false;">Women</a>
+      <a href="#" class="nav-cat" data-cat="kids" onclick="filterByGender('Kids');showPage('listing');return false;">Kids</a>
+      <a href="#" class="nav-cat" data-cat="home" onclick="showPage('listing');return false;">Home & Living</a>
+      <a href="#" class="nav-cat" data-cat="beauty" onclick="showPage('listing');return false;">Beauty</a>
+      <a href="#" class="nav-cat" onclick="showPage('listing');return false;" style="color:#ff3f6c;font-weight:700;">Studio<sup style="background:#ff3f6c;color:#fff;padding:1px 4px;border-radius:3px;font-size:9px;margin-left:2px;">NEW</sup></a>
+    </nav>
+
+    <div class="nav-search">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="searchInput" placeholder="Search for products, brands and more" />
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+
+    <div class="nav-actions">
+      <div class="nav-action" onclick="showPage('login')">
+        <i class="far fa-user"></i>
+        <span>Profile</span>
+      </div>
+      <div class="nav-action" onclick="showPage('wishlist')">
+        <i class="far fa-heart"></i>
+        <span>Wishlist</span>
+        <span class="badge" id="wishlistBadge">0</span>
+      </div>
+      <div class="nav-action" onclick="showPage('cart')">
+        <i class="fas fa-shopping-bag"></i>
+        <span>Bag</span>
+        <span class="badge" id="cartBadge">0</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════ PAGES ════════════════════════════ -->
+
+<!-- ── HOME PAGE ── -->
+<div id="page-home" class="page active">
+
+  <!-- Hero Banner -->
+  <div class="hero-slider">
+    <!-- Slide 1 -->
+    <div class="hero-slide active" style="background: linear-gradient(120deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);">
+      <div class="hero-content">
+        <p class="hero-sub">New Season Arrivals</p>
+        <h1 class="hero-title">Summer <em>Essentials</em><br/>Collection 2024</h1>
+        <p class="hero-desc">Up to 70% off on top brands</p>
+        <button class="btn-hero" onclick="showPage('listing')">Shop Now</button>
+      </div>
+      <div class="hero-image-wrap">
+        <img class="hero-model-img" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=85" alt="Summer Fashion" />
+        <div class="hero-badge-float">SALE<br/>LIVE</div>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="hero-slide" style="background:linear-gradient(120deg,#2d1b69,#11998e);">
+      <div class="hero-content">
+        <p class="hero-sub">Exclusive Collection</p>
+        <h1 class="hero-title">Designer <em>Picks</em><br/>Up to 60% Off</h1>
+        <p class="hero-desc">Premium brands, unbeatable prices</p>
+        <button class="btn-hero" onclick="showPage('listing')">Explore</button>
+      </div>
+      <div class="hero-image-wrap">
+        <img class="hero-model-img" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=85" alt="Designer Fashion" />
+        <div class="hero-badge-float" style="background:#ffd93d;color:#1a1a2e;">NEW<br/>IN</div>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="hero-slide" style="background:linear-gradient(120deg,#c94b4b,#4b134f);">
+      <div class="hero-content">
+        <p class="hero-sub">Festive Season</p>
+        <h1 class="hero-title">Ethnic <em>Wear</em><br/>Grand Sale</h1>
+        <p class="hero-desc">Sarees, Kurtas & more</p>
+        <button class="btn-hero" onclick="showPage('listing')">Shop Ethnic</button>
+      </div>
+      <div class="hero-image-wrap">
+        <img class="hero-model-img" src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&q=85" alt="Ethnic Wear" />
+        <div class="hero-badge-float" style="background:#f7971e;color:#fff;">70%<br/>OFF</div>
+      </div>
+    </div>
+    <div class="slider-dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+    <button class="slider-arrow left" onclick="changeSlide(-1)">&#8249;</button>
+    <button class="slider-arrow right" onclick="changeSlide(1)">&#8250;</button>
+  </div>
+
+  <!-- Categories Grid -->
+  <section class="section">
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="categories-grid">
+      <div class="cat-card" onclick="filterByCategory('T-Shirts');showPage('listing')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+          <i class="fas fa-tshirt"></i>
+        </div>
+        <span>T-Shirts</span>
+      </div>
+      <div class="cat-card" onclick="filterByCategory('Dresses');showPage('listing')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+          <i class="fas fa-person-dress"></i>
+        </div>
+        <span>Dresses</span>
+      </div>
+      <div class="cat-card" onclick="filterByCategory('Jeans');showPage('listing')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">
+          <i class="fas fa-person"></i>
+        </div>
+        <span>Jeans</span>
+      </div>
+      <div class="cat-card" onclick="filterByCategory('Shoes');showPage('listing')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">
+          <i class="fas fa-shoe-prints"></i>
+        </div>
+        <span>Footwear</span>
+      </div>
+      <div class="cat-card" onclick="filterByCategory('Watches');showPage('listing')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#fa709a,#fee140)">
+          <i class="fas fa-clock"></i>
+        </div>
+        <span>Watches</span>
+      </div>
+      <div class="cat-card" onclick="filterByCategory('Bags');showPage('listing')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)">
+          <i class="fas fa-bag-shopping"></i>
+        </div>
+        <span>Bags</span>
+      </div>
+      <div class="cat-card" onclick="filterByCategory('Kurta');showPage('listing')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#f77062,#fe5196)">
+          <i class="fas fa-vest"></i>
+        </div>
+        <span>Ethnic Wear</span>
+      </div>
+      <div class="cat-card" onclick="filterByCategory('Jackets');showPage('listing')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#30cfd0,#667eea)">
+          <i class="fas fa-jacket"></i>
+        </div>
+        <span>Jackets</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Logos -->
+  <section class="brand-strip">
+    <div class="brand-track">
+      <span>H&M</span><span>Zara</span><span>Nike</span><span>Adidas</span><span>Puma</span>
+      <span>Levis</span><span>Mango</span><span>Arrow</span><span>Allen Solly</span><span>W</span>
+      <span>Biba</span><span>Only</span><span>Vero Moda</span><span>Jack & Jones</span><span>UCB</span>
+      <span>H&M</span><span>Zara</span><span>Nike</span><span>Adidas</span><span>Puma</span>
+    </div>
+  </section>
+
+  <!-- Trending Products -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">Trending Now</h2>
+      <a href="#" onclick="showPage('listing');return false;" class="view-all">View All →</a>
+    </div>
+    <div class="products-row" id="trendingProducts"></div>
+  </section>
+
+  <!-- Sale Banner -->
+  <section class="sale-banner">
+    <div class="sale-banner-inner">
+      <div class="sale-left">
+        <p class="sale-tag">LIMITED TIME OFFER</p>
+        <h2>End of Season<br/><span>SALE</span></h2>
+        <p>Up to 80% off on 5,00,000+ styles</p>
+        <button class="btn-sale" onclick="showPage('listing')">Grab the Deal</button>
+      </div>
+      <div class="sale-right">
+        <div class="sale-countdown" id="countdown">
+          <div class="count-box"><span id="hours">08</span><small>Hours</small></div>
+          <div class="count-sep">:</div>
+          <div class="count-box"><span id="mins">45</span><small>Mins</small></div>
+          <div class="count-sep">:</div>
+          <div class="count-box"><span id="secs">30</span><small>Secs</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- New Arrivals -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">New Arrivals</h2>
+      <a href="#" onclick="showPage('listing');return false;" class="view-all">View All →</a>
+    </div>
+    <div class="products-row" id="newArrivalsProducts"></div>
+  </section>
+
+  <!-- Top Brands Banner -->
+  <section class="section">
+    <h2 class="section-title">Top Brands for You</h2>
+    <div class="brand-cards">
+      <div class="brand-card" style="background:linear-gradient(135deg,#000,#333)" onclick="filterByBrand('Nike');showPage('listing')">
+        <span class="brand-name">Nike</span>
+        <span class="brand-off">Up to 50% off</span>
+      </div>
+      <div class="brand-card" style="background:linear-gradient(135deg,#1a1a1a,#4a4a4a)" onclick="filterByBrand('Adidas');showPage('listing')">
+        <span class="brand-name">Adidas</span>
+        <span class="brand-off">Up to 40% off</span>
+      </div>
+      <div class="brand-card" style="background:linear-gradient(135deg,#c00,#600)" onclick="filterByBrand('Levi\'s');showPage('listing')">
+        <span class="brand-name">Levi's</span>
+        <span class="brand-off">Up to 60% off</span>
+      </div>
+      <div class="brand-card" style="background:linear-gradient(135deg,#004f9f,#002d5c)" onclick="filterByBrand('H&M');showPage('listing')">
+        <span class="brand-name">H&M</span>
+        <span class="brand-off">Up to 70% off</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h4>Online Shopping</h4>
+        <ul><li>Men</li><li>Women</li><li>Kids</li><li>Home & Living</li><li>Beauty</li></ul>
+      </div>
+      <div>
+        <h4>Customer Policies</h4>
+        <ul><li>Contact Us</li><li>FAQ</li><li>T&C</li><li>Terms of Use</li><li>Track Orders</li><li>Shipping</li><li>Cancellation</li><li>Returns</li><li>Privacy Policy</li></ul>
+      </div>
+      <div>
+        <h4>Experience Myntra App On Mobile</h4>
+        <div class="app-buttons">
+          <div class="app-btn"><i class="fab fa-google-play"></i> Google Play</div>
+          <div class="app-btn"><i class="fab fa-apple"></i> App Store</div>
+        </div>
+        <h4 style="margin-top:20px">Keep in Touch</h4>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+      <div>
+        <h4>Guaranteed Safe Checkout</h4>
+        <div class="payment-icons">
+          <span class="pay-icon">VISA</span>
+          <span class="pay-icon">MC</span>
+          <span class="pay-icon">UPI</span>
+          <span class="pay-icon">EMI</span>
+          <span class="pay-icon">COD</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 myntra.com — Clone Project built with HTML, CSS & JavaScript</p>
+    </div>
+  </footer>
+</div>
+
+<!-- ── PRODUCT LISTING PAGE ── -->
+<div id="page-listing" class="page">
+  <div class="listing-layout">
+    <!-- Filter Sidebar -->
+    <aside class="filter-sidebar" id="filterSidebar">
+      <div class="filter-header">
+        <h3>Filters</h3>
+        <span class="clear-all" onclick="clearFilters()">CLEAR ALL</span>
+      </div>
+
+      <div class="filter-group">
+        <h4 class="filter-title">GENDER <i class="fas fa-chevron-up"></i></h4>
+        <div class="filter-options">
+          <label><input type="checkbox" name="gender" value="Men" onchange="applyFilters()"/> Men</label>
+          <label><input type="checkbox" name="gender" value="Women" onchange="applyFilters()"/> Women</label>
+          <label><input type="checkbox" name="gender" value="Kids" onchange="applyFilters()"/> Kids</label>
+          <label><input type="checkbox" name="gender" value="Unisex" onchange="applyFilters()"/> Unisex</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4 class="filter-title">PRICE RANGE <i class="fas fa-chevron-up"></i></h4>
+        <div class="filter-options price-range-wrap">
+          <input type="range" id="priceRange" min="0" max="10000" value="10000" step="100" oninput="updatePriceFilter(this.value)" />
+          <div class="price-labels">
+            <span>₹0</span>
+            <span id="priceDisplay">₹10,000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4 class="filter-title">CATEGORY <i class="fas fa-chevron-up"></i></h4>
+        <div class="filter-options" id="categoryFilters"></div>
+      </div>
+
+      <div class="filter-group">
+        <h4 class="filter-title">BRAND <i class="fas fa-chevron-up"></i></h4>
+        <div class="filter-options" id="brandFilters"></div>
+      </div>
+
+      <div class="filter-group">
+        <h4 class="filter-title">DISCOUNT <i class="fas fa-chevron-up"></i></h4>
+        <div class="filter-options">
+          <label><input type="checkbox" name="discount" value="10" onchange="applyFilters()"/> 10% and above</label>
+          <label><input type="checkbox" name="discount" value="20" onchange="applyFilters()"/> 20% and above</label>
+          <label><input type="checkbox" name="discount" value="30" onchange="applyFilters()"/> 30% and above</label>
+          <label><input type="checkbox" name="discount" value="50" onchange="applyFilters()"/> 50% and above</label>
+          <label><input type="checkbox" name="discount" value="70" onchange="applyFilters()"/> 70% and above</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4 class="filter-title">RATINGS <i class="fas fa-chevron-up"></i></h4>
+        <div class="filter-options">
+          <label><input type="checkbox" name="rating" value="4" onchange="applyFilters()"/> 4★ & above</label>
+          <label><input type="checkbox" name="rating" value="3" onchange="applyFilters()"/> 3★ & above</label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Products Area -->
+    <div class="listing-main">
+      <div class="listing-top">
+        <div class="listing-info">
+          <h2 id="listingTitle">All Products</h2>
+          <span id="listingCount">0 items</span>
+        </div>
+        <div class="listing-sort">
+          <label>Sort by:</label>
+          <select id="sortSelect" onchange="applyFilters()">
+            <option value="recommended">Recommended</option>
+            <option value="new">What's New</option>
+            <option value="popular">Popularity</option>
+            <option value="priceLow">Price: Low to High</option>
+            <option value="priceHigh">Price: High to Low</option>
+            <option value="discount">Better Discount</option>
+            <option value="rating">Customer Rating</option>
+          </select>
+        </div>
+        <button class="mobile-filter-btn" onclick="toggleMobileFilter()"><i class="fas fa-sliders-h"></i> Filter</button>
+      </div>
+      <div class="products-grid" id="listingGrid"></div>
+      <div class="load-more-wrap">
+        <button class="btn-load-more" onclick="loadMore()">Load More Products</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PRODUCT DETAIL PAGE ── -->
+<div id="page-detail" class="page">
+  <div class="breadcrumb" id="detailBreadcrumb"></div>
+  <div class="detail-layout">
+    <!-- Image Gallery -->
+    <div class="detail-gallery">
+      <div class="gallery-thumbs" id="galleryThumbs"></div>
+      <div class="gallery-main-wrap">
+        <img id="mainProductImg" src="" alt="Product" class="gallery-main-img" />
+        <button class="wishlist-detail-btn" id="detailWishlistBtn" onclick="toggleDetailWishlist()">
+          <i class="far fa-heart"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="detail-info">
+      <div class="detail-brand" id="detailBrand"></div>
+      <div class="detail-name" id="detailName"></div>
+      <div class="detail-rating-wrap">
+        <div class="detail-rating" id="detailRating"></div>
+        <span class="detail-reviews" id="detailReviews"></span>
+      </div>
+      <div class="detail-price-wrap">
+        <span class="detail-price" id="detailPrice"></span>
+        <span class="detail-mrp" id="detailMrp"></span>
+        <span class="detail-off" id="detailOff"></span>
+      </div>
+      <p class="detail-tax">inclusive of all taxes</p>
+
+      <div class="detail-sizes">
+        <div class="size-header">
+          <span>SELECT SIZE</span>
+          <a href="#" class="size-chart-link">Size Chart <i class="fas fa-ruler-horizontal"></i></a>
+        </div>
+        <div class="size-options" id="detailSizes"></div>
+      </div>
+
+      <div class="detail-cta">
+        <button class="btn-add-bag" id="btnAddBag" onclick="addToCartFromDetail()">
+          <i class="fas fa-shopping-bag"></i> ADD TO BAG
+        </button>
+        <button class="btn-wishlist-cta" id="btnWishlist" onclick="toggleDetailWishlist()">
+          <i class="far fa-heart"></i> WISHLIST
+        </button>
+      </div>
+
+      <div class="detail-offers">
+        <h4>Best Offers</h4>
+        <div class="offer-item"><i class="fas fa-tag"></i><span><strong>10% Off</strong> on Axis Bank Credit Card. Min spend ₹2000. T&C apply</span></div>
+        <div class="offer-item"><i class="fas fa-tag"></i><span><strong>5% cashback</strong> on Myntra Insider orders above ₹1299</span></div>
+        <div class="offer-item"><i class="fas fa-tag"></i><span><strong>EMI</strong> starting from ₹142/month</span></div>
+      </div>
+
+      <div class="detail-delivery">
+        <h4>Delivery Options</h4>
+        <div class="delivery-input-wrap">
+          <input type="text" placeholder="Enter Pincode" maxlength="6" id="pincodeInput" />
+          <button onclick="checkDelivery()">Check</button>
+        </div>
+        <p id="deliveryMsg" class="delivery-msg"></p>
+      </div>
+
+      <div class="detail-meta" id="detailMeta"></div>
+    </div>
+  </div>
+
+  <!-- Product Description -->
+  <div class="detail-description" id="detailDescription"></div>
+
+  <!-- Similar Products -->
+  <section class="section" style="padding:20px 40px">
+    <div class="section-header">
+      <h2 class="section-title">Similar Products</h2>
+    </div>
+    <div class="products-row" id="similarProducts"></div>
+  </section>
+</div>
+
+<!-- ── CART PAGE ── -->
+<div id="page-cart" class="page">
+  <div class="cart-layout">
+    <div class="cart-left">
+      <div class="cart-header-row">
+        <h2>My Bag (<span id="cartItemCount">0</span> items)</h2>
+      </div>
+      <div id="cartItems"></div>
+      <div class="empty-cart" id="emptyCart" style="display:none">
+        <i class="fas fa-shopping-bag" style="font-size:60px;color:#d4d4d4;margin-bottom:16px"></i>
+        <h3>Hey, it feels so light!</h3>
+        <p>There is nothing in your bag. Let's add some items.</p>
+        <button class="btn-continue" onclick="showPage('listing')">Continue Shopping</button>
+      </div>
+    </div>
+
+    <div class="cart-right">
+      <!-- Coupons -->
+      <div class="cart-section">
+        <h3 class="cart-section-title"><i class="fas fa-tag"></i> Coupons</h3>
+        <div class="coupon-row">
+          <input type="text" id="couponInput" placeholder="Enter coupon code" />
+          <button onclick="applyCoupon()">Apply</button>
+        </div>
+        <div id="couponMsg" class="coupon-msg"></div>
+        <div class="coupon-chips">
+          <span class="chip" onclick="document.getElementById('couponInput').value='FIRST500'">FIRST500</span>
+          <span class="chip" onclick="document.getElementById('couponInput').value='SAVE100'">SAVE100</span>
+          <span class="chip" onclick="document.getElementById('couponInput').value='FLAT200'">FLAT200</span>
+        </div>
+      </div>
+
+      <!-- Price Details -->
+      <div class="cart-section price-details">
+        <h3 class="cart-section-title">PRICE DETAILS (<span id="pdItemCount">0</span> Items)</h3>
+        <div class="price-row"><span>Total MRP</span><span id="pdMrp">₹0</span></div>
+        <div class="price-row discount"><span>Discount on MRP</span><span id="pdDiscount">-₹0</span></div>
+        <div class="price-row"><span>Coupon Discount</span><span id="pdCoupon" class="green">-₹0</span></div>
+        <div class="price-row"><span>Platform Fee</span><span id="pdFee">₹20</span></div>
+        <div class="price-row"><span>Shipping Fee</span><span id="pdShipping">₹0 <small class="green">FREE</small></span></div>
+        <div class="price-divider"></div>
+        <div class="price-row total"><span>Total Amount</span><span id="pdTotal">₹0</span></div>
+        <p class="savings-msg" id="savingsMsg"></p>
+        <button class="btn-place-order" onclick="placeOrder()">PLACE ORDER</button>
+      </div>
+
+      <!-- Safety -->
+      <div class="cart-section safe-section">
+        <p><i class="fas fa-shield-alt"></i> Safe and Secure Payments. Easy returns. 100% Authentic products.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WISHLIST PAGE ── -->
+<div id="page-wishlist" class="page">
+  <div class="wishlist-layout">
+    <div class="wishlist-header">
+      <h2>My Wishlist (<span id="wishlistCount">0</span> items)</h2>
+    </div>
+    <div id="wishlistGrid" class="wishlist-grid"></div>
+    <div class="empty-wishlist" id="emptyWishlist" style="display:none">
+      <i class="far fa-heart" style="font-size:60px;color:#d4d4d4;margin-bottom:16px"></i>
+      <h3>Your Wishlist is Empty</h3>
+      <p>Save items you love to your wishlist and buy them later.</p>
+      <button class="btn-continue" onclick="showPage('listing')">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── LOGIN PAGE ── -->
+<div id="page-login" class="page">
+  <div class="auth-layout">
+    <div class="auth-left">
+      <div class="auth-brand">
+        <span class="auth-logo">myntra</span>
+        <p>Login to</p>
+        <h2>Look Good,<br/>Feel Great</h2>
+        <p class="auth-sub">Get access to your Wishlist,<br/>Orders, Recommendations & much more.</p>
+        <div class="auth-perks">
+          <div class="perk"><i class="fas fa-shipping-fast"></i><span>Free Delivery</span></div>
+          <div class="perk"><i class="fas fa-undo-alt"></i><span>Easy Returns</span></div>
+          <div class="perk"><i class="fas fa-lock"></i><span>Secure Payments</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-tabs">
+        <span class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">LOGIN</span>
+        <span class="auth-tab" id="tabSignup" onclick="switchAuthTab('signup')">SIGNUP</span>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Email / Mobile Number</label>
+          <input type="text" id="loginEmail" placeholder="Enter email or mobile number" required />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-eye-wrap">
+            <input type="password" id="loginPassword" placeholder="Enter your password" required />
+            <i class="far fa-eye" onclick="togglePass('loginPassword', this)"></i>
+          </div>
+        </div>
+        <p class="forgot-link">Forgot Password?</p>
+        <p class="auth-terms">By continuing, you agree to Myntra's <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+        <button type="submit" class="btn-auth">LOGIN</button>
+        <div id="loginMsg" class="auth-msg"></div>
+        <div class="auth-divider"><span>or</span></div>
+        <button type="button" class="btn-social"><i class="fab fa-google"></i> Continue with Google</button>
+        <button type="button" class="btn-social"><i class="fab fa-facebook-f"></i> Continue with Facebook</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signupForm" class="auth-form" style="display:none" onsubmit="handleSignup(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="signupName" placeholder="Enter your full name" required />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="signupEmail" placeholder="Enter your email" required />
+        </div>
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="tel" id="signupMobile" placeholder="Enter your mobile number" required />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-eye-wrap">
+            <input type="password" id="signupPassword" placeholder="Create password" required />
+            <i class="far fa-eye" onclick="togglePass('signupPassword', this)"></i>
+          </div>
+        </div>
+        <p class="auth-terms">By continuing, you agree to Myntra's <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+        <button type="submit" class="btn-auth">SIGNUP</button>
+        <div id="signupMsg" class="auth-msg"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<!-- Order Success Modal -->
+<div class="modal-overlay" id="orderModal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-success-icon"><i class="fas fa-check-circle"></i></div>
+    <h2>Order Placed Successfully!</h2>
+    <p>Your order has been placed and will be delivered in 3-5 business days.</p>
+    <p class="order-id">Order ID: <strong id="orderId"></strong></p>
+    <button class="btn-modal" onclick="closeOrderModal()">Continue Shopping</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
