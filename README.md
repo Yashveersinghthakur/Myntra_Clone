@@ -67,7 +67,7 @@ index.html
 
 ## 🌐 Live Demo
 
-http://127.0.0.1:5500/
+https://myntra-clone-eta-ebon.vercel.app/
 
 ---
 
